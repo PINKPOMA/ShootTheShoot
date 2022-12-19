@@ -44,7 +44,8 @@ public class Enemy : MonoBehaviour
     {
         if (Random.Range(0, 2) == 0)
         {
-            Instantiate(heal, transform.position, Quaternion.identity);
+            var position = transform.position;
+            Instantiate(heal, new Vector3(position.x,2,position.z), Quaternion.identity);
         }
         ScoreManager.Instance.score += 100;
         GameObject.FindWithTag("ScoreText").GetComponent<ScoreText>().RefreshText();
