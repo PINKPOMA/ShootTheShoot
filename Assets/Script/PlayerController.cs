@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Heal"))
         {
+            if (hp > 4) return;
             hp += 3;
             if (hp > 5)
                 hp = 5;
