@@ -13,7 +13,7 @@ public class Buttonmanager : MonoBehaviour
 
   public void OnStart()
   {
-    SceneManager.LoadScene("SampleScene");
+    SceneManager.LoadScene("InGameScene");
   }
   public void OnExit()
   {
@@ -23,8 +23,10 @@ public class Buttonmanager : MonoBehaviour
          Application.Quit();
 #endif
   }
+  
   public void OnTitle()
   {
+    Destroy(ScoreManager.Instance);
     SceneManager.LoadScene("StartScene");
   }
 }

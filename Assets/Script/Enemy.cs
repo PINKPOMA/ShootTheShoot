@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     private Transform target;
     private NavMeshAgent navAgent;
+    [SerializeField]private GameObject heal;
     private int _hp = 5;
     public void Awake()
     {
@@ -34,7 +36,18 @@ public class Enemy : MonoBehaviour
         _hp--;
         if (_hp < 1)
         {
-            Destroy(gameObject);
+            Dead();
         }
+    }
+
+    void Dead()
+    {
+        if (Random.Range(0, 2) == 0)
+        {
+            Instantiate(heal, transform.position, Quaternion.identity);
+        }
+        ScoreManager.Instance.score += 100;
+        GameObject.FindWithTag("ScoreText").GetComponent<ScoreText>().RefreshText();
+        Destroy(gameObject);
     }
 }

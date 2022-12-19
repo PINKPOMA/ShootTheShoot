@@ -65,6 +65,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Heal"))
+        {
+            hp += 3;
+            if (hp > 5)
+                hp = 5;
+            
+            Destroy(other.gameObject);
+        }
+    }
+
     IEnumerator NoDamage()
     {
         noDamage = true;
